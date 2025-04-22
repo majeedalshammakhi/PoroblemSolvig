@@ -1,0 +1,29 @@
+def problem(matrix):
+    n = len(matrix)  # Get the size of the matrix (number of rows)
+    primary = 0  # Initialize the sum for the primary diagonal
+    secondary = 0  # Initialize the sum for the secondary diagonal
+
+    for i in range(n):
+        primary += matrix[i][i]  # Sum elements in the primary diagonal
+        secondary += matrix[i][n - 1 - i]  # Sum elements in the secondary diagonal
+    return abs(primary - secondary)  # Return the absolute difference
+
+# Example matrices
+matrix1 = [  # Initialize the first matrix
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+matrix2 = [  # Initialize the second matrix
+    [11, 22, 3],
+    [12, 6, 6],
+    [10, 8, 9]
+]
+
+# Test the function with the example matrices
+result1 = problem(matrix1)  # For first matrix
+result2 = problem(matrix2)  # For second matrix
+
+# Print the results
+print("Absolute difference for matrix1=", result1)
+print("Absolute difference for matrix2=", result2)
