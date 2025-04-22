@@ -1,0 +1,34 @@
+def binarySearch(array, x, low, high):
+    # Loop until the low index is less than or equal to the high index
+    while low <= high:
+        # Calculate the middle index
+        mid = low + (high - low) // 2
+
+        # Check if the middle element is the target value (x)
+        if array[mid] == x:
+            return mid  # Return the index if found
+
+        # If the middle element is less than the target, search in the right half
+        elif array[mid] < x:
+            low = mid + 1
+
+        # If the middle element is greater than the target, search in the left half
+        else:
+            high = mid - 1
+
+    return -1  # Return -1 if the element is not found
+
+
+# Example array (must be sorted) and the value to search for
+array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+x = 7  # Target value to search for
+
+# Call the binary search function
+Find = binarySearch(array, x, 0, len(array) - 1)  # Set low to 0 and high to the last index
+
+# Check if the value was found and print the appropriate message
+if Find == -1:
+    print("Element is not present.")  # If -1, the element was not found
+else:
+    print("Found at index " + str(Find))  # Print the index where it was found
+
