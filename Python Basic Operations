@@ -1,0 +1,49 @@
+# Simple Python Calculator
+# This script does basic math operations and shows variable types
+
+# --- MATH OPERATIONS ---
+# Get two numbers from user
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+# Do calculations
+add = num1 + num2          # Addition
+sub = num2 - num1          # Subtraction 
+mult = num1 * num2         # Multiplication
+div = num1 / num2          # Division
+
+# Print results
+print(f"\nResults:")
+print(f"{num1} + {num2} = {add}")
+print(f"{num2} - {num1} = {sub}")
+print(f"{num1} × {num2} = {mult}")
+print(f"{num1} ÷ {num2} = {div:.2f}")  # .2f shows 2 decimal places
+
+# --- VARIABLE TYPES ---
+# Different types of variables
+age = 25                  # Integer 
+height = 1.68             # Float
+name = "Majeed"              # String
+
+# Show the types
+print("\nVariable types:")
+print(f"age is {type(age)}")      # type() shows variable type
+print(f"height is {type(height)}")
+print(f"name is {type(name)}")
+
+# --- RECTANGLE AREA ---
+# Calculate area of rectangle
+print("\nArea Calculator:")
+length = float(input("Enter length: "))
+width = float(input("Enter width: "))
+area = length * width
+print(f"Area = {area}")
+
+# --- SIMPLE INTEREST ---
+# Calculate simple interest
+print("\nInterest Calculator:")
+principal = float(input("Loan amount: "))
+rate = float(input("Interest rate (%): ")) 
+time = float(input("Years: "))
+interest = (principal * rate * time) / 100
+print(f"Interest = {interest:.2f}")
