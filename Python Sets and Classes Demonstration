@@ -1,0 +1,129 @@
+"""
+sets_and_classes.py
+
+Demonstrates Python sets and basic object-oriented programming concepts including:
+- Set creation and operations
+- Class definitions with public, protected, and private attributes
+- Class methods and object instantiation
+"""
+
+# ======================
+# SET OPERATIONS SECTION
+# ======================
+
+def demonstrate_sets():
+    """Show various set operations in Python"""
+    print("\n=== PYTHON SET DEMONSTRATION ===")
+    
+    # Basic set creation
+    number_set = {1, 2, 3, 4, 5, 6}
+    print("\nBasic set:", number_set)
+    
+    # Empty set creation (note: {} creates a dictionary)
+    empty_set = set()
+    print("\nEmpty set:", empty_set)
+    print("Type of empty_set:", type(empty_set))
+    
+    # Create set from list (removes duplicates)
+    set_from_list = set([1, 2, 3, 3, 2])
+    print("\nSet from list (duplicates removed):", set_from_list)
+    
+    # Set operations
+    set_a = {1, 2, 3, 4}
+    set_b = {2, 4, 6, 8, 6, 6}  # Duplicates automatically removed
+    
+    print("\nSet A:", set_a)
+    print("Set B:", set_b)
+    print("Union (A | B):", set_a | set_b)
+    print("Intersection (A & B):", set_a & set_b)
+    print("Difference (A - B):", set_a - set_b)
+    print("Symmetric Difference (A ^ B):", set_a ^ set_b)
+
+# ======================
+# CLASSES SECTION
+# ======================
+
+class Dog:
+    """
+    Dog class demonstrating protected and private attributes
+    
+    Attributes:
+        _name (str): Protected attribute - dog's name
+        __age (int): Private attribute - dog's age
+    """
+    
+    def __init__(self, name, age):
+        """Initialize Dog with name and age"""
+        self._name = name      # Protected attribute
+        self.__age = age       # Private attribute
+    
+    def bark(self, game):
+        """Make the dog bark and play"""
+        return f"{self._name} says woof and plays with {game}!"
+    
+    # Getter methods
+    def get_name(self):
+        """Get the dog's name"""
+        return self._name
+    
+    def get_age(self):
+        """Get the dog's age"""
+        return self.__age
+    
+    # Setter method
+    def update_name(self, new_name):
+        """Update the dog's name"""
+        self._name = new_name
+
+class Car:
+    """
+    Car class demonstrating public, protected and private attributes
+    
+    Attributes:
+        make (str): Public attribute - car manufacturer
+        _model (str): Protected attribute - car model
+        __year (int): Private attribute - manufacturing year
+    """
+    
+    def __init__(self, make, model, year):
+        """Initialize Car with make, model and year"""
+        self.make = make          # Public attribute
+        self._model = model       # Protected attribute
+        self.__year = year        # Private attribute
+    
+    def display_details(self, plate_number):
+        """Display car details with license plate"""
+        return (f"Car make: {self.make}, model: {self._model}, "
+                f"year: {self.__year}, plate: {plate_number}")
+
+def demonstrate_classes():
+    """Show class instantiation and usage"""
+    print("\n=== PYTHON CLASS DEMONSTRATION ===")
+    
+    # Dog class usage
+    print("\n--- Dog Class ---")
+    my_dog = Dog("Fox", 3)
+    print(my_dog.bark("ball"))
+    print("Dog's name:", my_dog.get_name())
+    print("Dog's age:", my_dog.get_age())
+    
+    # Update dog's name
+    my_dog.update_name("Max")
+    print("After name update:", my_dog.bark("frisbee"))
+    
+    # Car class usage
+    print("\n--- Car Class ---")
+    car1 = Car("Toyota", "Corolla", 2020)
+    print(car1.display_details("ABC-1234"))
+    
+    car2 = Car("Toyota", "Camry", 2022)
+    print(car2.display_details("XYZ-5678"))
+
+# ======================
+# MAIN PROGRAM
+# ======================
+
+if __name__ == "__main__":
+    demonstrate_sets()
+    demonstrate_classes()
+    print("\nProgram completed successfully!")
