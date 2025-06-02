@@ -1,0 +1,132 @@
+# -*- coding: utf-8 -*-
+"""
+Sales Data Analysis Script
+
+Performs various filtering operations on sales data to extract meaningful insights.
+"""
+
+import pandas as pd
+
+def load_data():
+    """Load and display sales data."""
+    df = pd.read_csv("/content/sample_sales_data.csv")
+    print("\nOriginal Dataset:")
+    print(df)
+    print("\nColumns:", df.columns.tolist())
+    return df
+
+def equality_comparisons(df):
+    """Demonstrate equality and comparison operations."""
+    print("\n1. Equality and Comparison Conditions")
+    
+    # Orders with TotalAmount > 500
+    high_value_orders = df[df['TotalAmount'] > 500]
+    print("\nHigh value orders (>$500):")
+    print(high_value_orders)
+    
+    # Electronics category orders
+    electronics_orders = df[df['Category'] == 'Electronics']
+    print("\nElectronics orders:")
+    print(electronics_orders)
+
+def multiple_conditions(df):
+    """Show examples of multiple condition filtering."""
+    print("\n2. Multiple Conditions")
+    
+    # Clothing AND Completed
+    clothing_completed = df[(df['Category'] == 'Clothing') & (df['Status'] == 'Completed')]
+    print("\nCompleted clothing orders:")
+    print(clothing_completed)
+    
+    # Quantity > 5 OR Pending status
+    large_or_pending = df[(df['Quantity'] > 5) | (df['Status'] == 'Pending')]
+    print("\nLarge quantity or pending orders:")
+    print(large_or_pending)
+
+def range_conditions(df):
+    """Demonstrate range-based filtering."""
+    print("\n3. Range Conditions")
+    
+    # Orders between $200 and $1000
+    mid_range_orders = df[df['TotalAmount'].between(200, 1000)]
+    print("\nOrders between $200 and $1000:")
+    print(mid_range_orders)
+
+def string_operations(df):
+    """Show string-based filtering operations."""
+    print("\n4. String Matching")
+    
+    # Customer names starting with 'A'
+    a_customers = df[df['CustomerName'].str.startswith('A', na=False)]
+    print("\nCustomers with names starting with 'A':")
+    print(a_customers)
+    
+    # Categories containing 'Home'
+    home_categories = df[df['Category'].str.contains('Home', na=False)]
+    print("\nHome-related categories:")
+    print(home_categories)
+
+def null_checks(df):
+    """Demonstrate null value handling."""
+    print("\n5. Null/Not Null Conditions")
+    
+    # Missing customer names
+    null_customers = df[df['CustomerName'].isnull()]
+    print("\nOrders with missing customer names:")
+    print(null_customers)
+    
+    # Non-missing customer names
+    valid_customers = df[df['CustomerName'].notnull()]
+    print("\nOrders with valid customer names:")
+    print(valid_customers.head())  # Showing just first few for brevity
+
+def filtering_operations(df):
+    """Show various filtering techniques."""
+    print("\n6. Advanced Filtering Operations")
+    
+    # Row filtering
+    completed_orders = df[df['Status'] == 'Completed']
+    print("\nCompleted orders:")
+    print(completed_orders.head())
+    
+    # Column filtering
+    selected_columns = df[['OrderID', 'CustomerName', 'TotalAmount']]
+    print("\nSelected columns (OrderID, CustomerName, TotalAmount):")
+    print(selected_columns.head())
+    
+    # Boolean indexing
+    price_mask = df['Price'] > 100
+    high_price_orders = df[price_mask]
+    print("\nHigh price orders (>$100):")
+    print(high_price_orders.head())
+    
+    # loc-based filtering
+    filtered_data = df.loc[df['TotalAmount'] > 500, ['OrderID', 'Status']]
+    print("\nHigh value order IDs and status:")
+    print(filtered_data.head())
+    
+    # iloc-based filtering
+    first_10 = df.iloc[:10, [0, -1]]  # First column (OrderID) and last column (TotalAmount)
+    print("\nFirst 10 orders (OrderID and TotalAmount):")
+    print(first_10)
+    
+    # Drop column and save
+    df.drop(columns=['Status'], inplace=True)
+    df.to_csv('updated_data.csv', index=False)
+    print("\nDataset after dropping 'Status' column saved to 'updated_data.csv'")
+
+def main():
+    """Main execution function."""
+    print("Sales Data Analysis Script")
+    
+    # Load data
+    df = load_data()
+    
+    # Perform analysis operations
+    equality_comparisons(df)
+    multiple_conditions(df)
+    range_conditions(df)
+    string_operations(df)
+    null_checks(df)
+    filtering_operations(df)
+
