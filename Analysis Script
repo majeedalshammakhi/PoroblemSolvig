@@ -1,0 +1,96 @@
+# -*- coding: utf-8 -*-
+"""
+Financial Fraud Detection Analysis
+
+Dataset: Synthetic Financial Datasets for Fraud Detection
+Source: https://www.kaggle.com/datasets/ealaxi/paysim1
+"""
+
+import pandas as pd
+import datetime as dt
+from datetime import datetime, timedelta
+
+
+def load_data():
+    """Load and preprocess financial transaction data."""
+    df = pd.read_csv('/content/Synthetic_Financial_datasets_log.csv')
+    print("\nFirst 8 transactions:")
+    print(df.head(8))
+    
+    # Display relevant columns
+    print("\nSelected columns:")
+    print(df[['type', 'amount', 'nameDest', 'nameOrig', 'oldbalanceOrg', 'newbalanceOrig']])
+    
+    # Check for missing values
+    print("\nMissing values per column:")
+    print(df.isnull().sum())
+    
+    return df
+
+
+def analyze_transactions(df):
+    """Perform transaction analysis."""
+    # Remove unnecessary columns
+    df_relevant = df.drop(columns=['nameOrig', 'nameDest'], inplace=False)
+    print("\nData after dropping columns:")
+    print(df_relevant)
+    
+    # Transaction type analysis
+    transaction_counts = df['type'].value_counts()
+    print("\nTransaction counts by type:")
+    print(transaction_counts)
+    
+    # Fraud percentage by transaction type
+    fraud_percentage = df.groupby('type')['isFraud'].mean() * 100
+    print("\nFraud percentage by transaction type:")
+    print(fraud_percentage)
+
+
+def datetime_operations():
+    """Demonstrate datetime operations."""
+    # Create specific datetime
+    t = dt.datetime(2025, 5, 11, 14, 30, 0)
+    print(f"\nSpecific datetime: {t}")
+    
+    # Current datetime
+    now = dt.datetime.now()
+    print(f"Current datetime: {now}")
+    
+    # String to datetime conversion
+    date_str = "30/04/2025 13:15:00"
+    dt_obj = datetime.strptime(date_str, "%d/%m/%Y %H:%M:%S")
+    print(f"\nParsed datetime: {dt_obj}")
+    
+    # Datetime formatting
+    formatted = dt_obj.strftime("%d-%b-%Y %H:%M:%S")
+    print(f"Formatted datetime: {formatted}")
+    
+    # Date arithmetic
+    future_date = dt_obj + timedelta(days=10)
+    print(f"Date 10 days later: {future_date}")
+    
+    # Date components
+    print("\nDate components:")
+    print(f"Year: {dt_obj.year}")
+    print(f"Month: {dt_obj.month}")
+    print(f"Hour: {dt_obj.hour}")
+    print(f"Minute: {dt_obj.minute}")
+    print(f"Second: {dt_obj.second}")
+
+
+def main():
+    """Main execution function."""
+    print("Financial Fraud Analysis Script")
+    
+    # Data loading and preprocessing
+    df = load_data()
+    
+    # Transaction analysis
+    analyze_transactions(df)
+    
+    # Datetime examples
+    datetime_operations()
+
+
+if __name__ == "__main__":
+    main()
