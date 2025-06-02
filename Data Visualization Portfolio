@@ -1,0 +1,213 @@
+# -*- coding: utf-8 -*-
+"""
+Data Visualization Portfolio
+
+A collection of matplotlib visualizations demonstrating various plot types and techniques.
+"""
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+def basic_line_plot():
+    """Demonstrate basic line plot."""
+    hours = ['4 AM', '6 AM', '9 PM', '12 AM']
+    temperature = ['20 C', '40 C', '60 C', '80 C']
+    
+    plt.figure(figsize=(8, 5))
+    plt.plot(hours, temperature, marker='o')
+    plt.title("Hours vs Temperature", fontsize=14)
+    plt.xlabel("Hours", fontsize=12)
+    plt.ylabel("Temperature", fontsize=12)
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.tight_layout()
+    plt.show()
+
+def product_sales_bar_chart():
+    """Show product sales using bar chart."""
+    products = ['Phone', 'Tablets', 'Laptop']
+    sales = [200, 150, 250]
+    
+    plt.figure(figsize=(8, 5))
+    plt.bar(products, sales, color='purple', edgecolor='yellow', linewidth=2)
+    plt.title("Sales by Product Category", fontsize=14)
+    plt.xlabel("Products", fontsize=12)
+    plt.ylabel("Sales", fontsize=12)
+    plt.tight_layout()
+    plt.show()
+
+def score_distribution_histogram():
+    """Display student score distribution."""
+    scores = [55, 68, 90, 60, 44, 22, 30, 41, 14, 86, 200, 99, 100]
+    
+    plt.figure(figsize=(8, 5))
+    plt.hist(scores, bins=5, color='pink', edgecolor='orange', linewidth=2)
+    plt.title("Student Exam Score Distribution", fontsize=14)
+    plt.xlabel("Score Range", fontsize=12)
+    plt.ylabel("Number of Students", fontsize=12)
+    plt.tight_layout()
+    plt.show()
+
+def market_share_pie_chart():
+    """Visualize smartphone market share."""
+    brands = ['Apple', 'Samsung', 'Huawei', 'Others']
+    shares = [35, 30, 20, 15]
+    colors = ['#2ecc71', '#3498db', '#e74c3c', '#f39c12']
+    
+    plt.figure(figsize=(8, 5))
+    plt.pie(shares, labels=brands, autopct='%1.1f%%', startangle=140,
+            colors=colors, wedgeprops={'edgecolor': 'black', 'linewidth': 1})
+    plt.title("Smartphone Market Share", fontsize=14)
+    plt.tight_layout()
+    plt.show()
+
+def study_vs_scores_scatter():
+    """Show relationship between study hours and exam scores."""
+    study_hours = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    exam_scores = [10, 20, 30, 40, 45, 50, 60, 70, 75]
+    
+    plt.figure(figsize=(8, 5))
+    plt.scatter(study_hours, exam_scores, color='red', edgecolor='black', s=100)
+    plt.title('Study Hours vs Exam Scores', fontsize=14)
+    plt.xlabel("Study Hours", fontsize=12)
+    plt.ylabel("Exam Scores", fontsize=12)
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.tight_layout()
+    plt.show()
+
+def electricity_bills_boxplot():
+    """Display distribution of electricity bills."""
+    bills = [45, 50, 55, 47, 60, 70, 68, 48, 49, 55, 66, 75]
+    
+    plt.figure(figsize=(8, 5))
+    plt.boxplot(bills, patch_artist=True,
+                boxprops=dict(facecolor='lightblue', color='black'),
+                medianprops=dict(color='red'))
+    plt.title("Monthly Electricity Bill", fontsize=14)
+    plt.ylabel("Bill ($)", fontsize=12)
+    plt.tight_layout()
+    plt.show()
+
+def random_digit_heatmap():
+    """Generate a random digit heatmap."""
+    digits = np.random.rand(8, 8)
+    
+    plt.figure(figsize=(8, 5))
+    plt.imshow(digits, cmap="Dark2_r")
+    plt.title("Random Digit Heatmap", fontsize=14)
+    plt.colorbar(label='Value')
+    plt.tight_layout()
+    plt.show()
+
+def multiple_plots_grid():
+    """Create a grid of different plot types."""
+    fig, axs = plt.subplots(2, 2, figsize=(10, 8))
+    
+    # Line plot
+    axs[0, 0].plot([1, 2, 3], [1, 4, 9], color='green', marker='o')
+    axs[0, 0].set_title('Square Numbers')
+    
+    # Bar chart
+    axs[0, 1].bar([1, 2, 3], [10, 20, 30], color='pink', edgecolor='black')
+    axs[0, 1].set_title('Bar Chart Example')
+    
+    # Scatter plot
+    axs[1, 0].scatter([1, 2, 3], [5, 15, 25], color='orange', edgecolor='black', s=100)
+    axs[1, 0].set_title('Scatter Plot Example')
+    
+    # Histogram
+    axs[1, 1].hist([1, 9, 2, 6, 3, 8], bins=3, color='purple', edgecolor='orange')
+    axs[1, 1].set_title('Histogram Example')
+    
+    plt.tight_layout()
+    plt.show()
+
+def sales_analysis_plots():
+    """Generate various sales analysis visualizations."""
+    # Sample Data
+    data = {
+        'Month': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        'Region A Sales': [200, 220, 250, 270, 300, 310, 
+                          400, 420, 450, 470, 500, 550],
+        'Region B Sales': [150, 180, 190, 200, 230, 250, 
+                          300, 320, 340, 360, 400, 430],
+        'Region C Sales': [100, 120, 140, 150, 160, 180, 
+                          190, 210, 220, 230, 250, 280],
+        'Advertising Budget': [50, 60, 55, 65, 70, 75, 
+                              85, 90, 95, 100, 110, 120]
+    }
+    df = pd.DataFrame(data)
+    
+    # Monthly Sales Trends
+    plt.figure(figsize=(10, 6))
+    regions = ['Region A Sales', 'Region B Sales', 'Region C Sales']
+    colors = ['#3498db', '#2ecc71', '#e74c3c']
+    
+    for region, color in zip(regions, colors):
+        plt.plot(df['Month'], df[region], label=region, 
+                color=color, marker='o', linewidth=2)
+    
+    plt.title('Monthly Sales Trends', fontsize=16)
+    plt.xlabel("Month", fontsize=12)
+    plt.ylabel("Sales", fontsize=12)
+    plt.legend(fontsize=10)
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.tight_layout()
+    plt.show()
+    
+    # Total Sales by Region
+    total_sales = df[regions].sum()
+    
+    plt.figure(figsize=(8, 6))
+    total_sales.plot(kind='bar', color=colors, edgecolor='black')
+    plt.title('Total Sales by Region', fontsize=16)
+    plt.xlabel("Region", fontsize=12)
+    plt.ylabel("Total Sales", fontsize=12)
+    plt.xticks(rotation=0)
+    plt.tight_layout()
+    plt.show()
+    
+    # Distribution of Region A Sales
+    plt.figure(figsize=(8, 6))
+    plt.hist(df['Region A Sales'], bins=5, color='#3498db', 
+             edgecolor='black', alpha=0.8)
+    plt.title('Distribution of Region A Sales', fontsize=16)
+    plt.xlabel("Sales", fontsize=12)
+    plt.ylabel("Frequency", fontsize=12)
+    plt.tight_layout()
+    plt.show()
+    
+    # Advertising Budget vs. Sales
+    plt.figure(figsize=(8, 6))
+    plt.scatter(df['Advertising Budget'], df['Region A Sales'], 
+               color='#3498db', edgecolor='black', s=100)
+    plt.title('Advertising Budget vs. Region A Sales', fontsize=16)
+    plt.xlabel("Advertising Budget", fontsize=12)
+    plt.ylabel("Region A Sales", fontsize=12)
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.tight_layout()
+    plt.show()
+    
+    # Sales Proportion by Region
+    plt.figure(figsize=(8, 6))
+    total_sales.plot(kind='pie', autopct='%1.1f%%', startangle=90, 
+                    colors=colors, wedgeprops={'edgecolor': 'black', 'linewidth': 1})
+    plt.title('Proportion of Sales by Region', fontsize=16)
+    plt.ylabel('')
+    plt.tight_layout()
+    plt.show()
+
+def main():
+    """Run all visualization examples."""
+    print("Running Data Visualization Portfolio...\n")
+    
+    basic_line_plot()
+    product_sales_bar_chart()
+    score_distribution_histogram()
+    market_share_pie_chart()
+    study_vs_scores_scatter()
+    electricity_bills_boxplot()
+    random_digit_heatmap()
+    multiple_plots_grid()
+    sales_analysis_plots()
